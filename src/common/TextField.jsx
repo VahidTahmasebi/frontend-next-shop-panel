@@ -1,7 +1,7 @@
 function TextField({ label, name, value, onChange }) {
   return (
     <div>
-      <label htmlFor={name} onSubmit={onSubmit} className="block mb-4">
+      <label htmlFor={name} className="block mb-4">
         {label}
       </label>
       <input
