@@ -1,14 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import http from "@/services/httpService";
+import { getOtp } from "@/services/authServices";
 
 import SendOTPForm from "./SendOTPForm";
 
 function AuthPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const { data, error, isLoading, mutateAsync } = useMutation({
+    mutationFn: getOtp,
+  });
 
   const phoneNumberHandler = ({ target }) => {
     setPhoneNumber(target.value);
@@ -18,10 +23,13 @@ function AuthPage() {
     e.preventDefault();
 
     try {
-      const { data } = await http.post("/user/get-otp", { phoneNumber });
-      console.log(data?.data);
+      const data = await mutateAsync(phoneNumber);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(
+        error?.response?.data?.message
+          ? error?.response?.data?.message
+          : "خطایی رخ داد"
+      );
     }
   };
 
