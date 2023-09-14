@@ -40,6 +40,7 @@ function AuthPage() {
           phoneNumber={phoneNumber}
           onChange={phoneNumberHandler}
           onSubmit={sendOTPHandler}
+          isLoading={isLoading}
         />
       </div>
     </div>

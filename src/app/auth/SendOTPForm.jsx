@@ -1,6 +1,6 @@
 import TextField from "@/common/TextField";
 
-function SendOTPForm({ phoneNumber, onChange, onSubmit }) {
+function SendOTPForm({ phoneNumber, onChange, onSubmit, isLoading }) {
   return (
     <div>
       <form onSubmit={onSubmit} className="space-y-10">
@@ -10,9 +10,13 @@ function SendOTPForm({ phoneNumber, onChange, onSubmit }) {
           value={phoneNumber}
           onChange={onChange}
         />
-        <button type="submit" className="w-full btn btn--primary">
-          ارسال کد تایید
-        </button>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <button type="submit" className="w-full btn btn--primary">
+            ارسال کد تایید
+          </button>
+        )}
       </form>
     </div>
   );
