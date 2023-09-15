@@ -8,6 +8,7 @@ function CheckOTPForm({
   onSubmit,
   onBack,
   onResendOtp,
+  isCheckingOtp,
 }) {
   return (
     <div>
@@ -43,9 +44,15 @@ function CheckOTPForm({
             borderRadius: ".5rem",
           }}
         />
-        <button type="submit" className="w-full btn btn--primary">
-          تایید
-        </button>
+        <div>
+          {isCheckingOtp ? (
+            <p>Loading...</p>
+          ) : (
+            <button type="submit" className="w-full btn btn--primary">
+              تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

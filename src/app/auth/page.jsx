@@ -26,9 +26,11 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
-  const { mutateAsync: mutateCheckOtp } = useMutation({
-    mutationFn: checkOtp,
-  });
+  const { isLoading: isCheckingOtp, mutateAsync: mutateCheckOtp } = useMutation(
+    {
+      mutationFn: checkOtp,
+    }
+  );
 
   const router = useRouter();
 
@@ -60,6 +62,11 @@ function AuthPage() {
     try {
       const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
       toast.success(message);
+      if (user.isActive) {
+        router.push("/");
+      } else {
+        router.push("/complete-profile");
+      }
     } catch (error) {
       toast.error(
         error?.response?.data?.message
@@ -101,6 +108,7 @@ function AuthPage() {
                   onSubmit={checkOtpHandler}
                   onBack={() => setStep(1)}
                   onResendOtp={sendOtpHandler}
+                  isCheckingOtp={isCheckingOtp}
                 />
               );
             default:

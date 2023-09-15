@@ -10,13 +10,15 @@ function SendOTPForm({ phoneNumber, onChange, onSubmit, isLoading }) {
           value={phoneNumber}
           onChange={onChange}
         />
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          <button type="submit" className="w-full btn btn--primary">
-            ارسال کد تایید
-          </button>
-        )}
+        <div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <button type="submit" className="w-full btn btn--primary">
+              ارسال کد تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );
