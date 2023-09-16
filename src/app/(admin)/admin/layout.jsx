@@ -13,7 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirFont.variable} font-sans`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${vazirFont.variable} font-sans`}>
         <Providers>
           <Toaster />
           <div className="xl:max-w-screen-xl container">{children}</div>

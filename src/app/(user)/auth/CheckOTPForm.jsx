@@ -18,7 +18,7 @@ function CheckOTPForm({
       {otpResponse && (
         <p>
           {otpResponse?.message}
-          <button onClick={onBack}>ویرایش</button>
+          <button onClick={onBack}> ویرایش</button>
         </p>
       )}
       <div className="mb-4">
@@ -35,7 +35,7 @@ function CheckOTPForm({
           onChange={setOtp}
           numInputs={6}
           renderSeparator={<span>-</span>}
-          renderInput={(props) => <input {...props} />}
+          renderInput={(props) => <input type="number" {...props} />}
           containerStyle="flex flex-row-reverse justify-center gap-x-2"
           inputStyle={{
             width: "2.5rem",
