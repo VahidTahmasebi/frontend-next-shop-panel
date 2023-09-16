@@ -1,11 +1,9 @@
-import "./globals.css";
+import "../../globals.css";
 import vazirFont from "@/constants/localFonts";
 
 import { Toaster } from "react-hot-toast";
 
-import Providers from "./providers";
-
-import Header from "./Header";
+import Providers from "@/pages/Providers";
 
 export const metadata = {
   title: "Shop Panel",
@@ -18,8 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`${vazirFont.variable} font-sans`}>
         <Providers>
           <Toaster />
-          <Header />
-          <div className="container xl:max-w-screen-xl">{children}</div>
+          <div className="xl:max-w-screen-xl container">{children}</div>
         </Providers>
       </body>
     </html>
