@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { completeProfile } from "@/services/authServices";
 
 import TextField from "@/common/TextField";
+import Loading from "@/common/Loading";
 
 function CompleteProfile() {
   const [name, setName] = useState("");
@@ -53,7 +54,7 @@ function CompleteProfile() {
           />
           <div>
             {isLoading ? (
-              <p>Loading...</p>
+              <Loading />
             ) : (
               <button type="submit" className="w-full btn btn--primary">
                 تایید

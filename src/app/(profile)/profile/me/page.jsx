@@ -7,6 +7,7 @@ import { useGetUser } from "@/hooks/useAuth";
 import includesObject from "@/utils/objectUtils";
 
 import TextField from "@/common/TextField";
+import Loading from "@/common/Loading";
 
 function MePage() {
   const [formData, setFormData] = useState({});
@@ -20,7 +21,7 @@ function MePage() {
     if (user) setFormData(includesObject(user, includesKey));
   }, [user]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="max-w-sm">
