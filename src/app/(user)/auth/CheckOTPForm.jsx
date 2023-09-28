@@ -1,5 +1,7 @@
 import OTPInput from "react-otp-input";
 
+import Loading from "@/common/Loading";
+
 function CheckOTPForm({
   otp,
   setOtp,
@@ -46,7 +48,7 @@ function CheckOTPForm({
         />
         <div>
           {isCheckingOtp ? (
-            <p>Loading...</p>
+            <Loading />
           ) : (
             <button type="submit" className="w-full btn btn--primary">
               تایید

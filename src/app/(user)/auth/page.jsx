@@ -106,7 +106,7 @@ function AuthPage() {
                   time={time}
                   otpResponse={otpResponse}
                   onSubmit={checkOtpHandler}
-                  onBack={() => setStep(1)}
+                  onBack={() => setStep((s) => s - 1)}
                   onResendOtp={sendOtpHandler}
                   isCheckingOtp={isCheckingOtp}
                 />

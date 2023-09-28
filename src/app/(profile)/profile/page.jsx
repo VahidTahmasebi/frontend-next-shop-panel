@@ -3,12 +3,13 @@
 import { useGetUser } from "@/hooks/useAuth";
 
 import { toLocalDateString } from "@/utils/toLocalDate";
+import Loading from "@/common/Loading";
 
 function Profile() {
   const { data, isLoading } = useGetUser();
   const { user } = data || {};
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   return (
     <div>

@@ -1,4 +1,5 @@
 import TextField from "@/common/TextField";
+import Loading from "@/common/Loading";
 
 function SendOTPForm({ phoneNumber, onChange, onSubmit, isLoading }) {
   return (
@@ -12,7 +13,7 @@ function SendOTPForm({ phoneNumber, onChange, onSubmit, isLoading }) {
         />
         <div>
           {isLoading ? (
-            <p>Loading...</p>
+            <Loading />
           ) : (
             <button type="submit" className="w-full btn btn--primary">
               ارسال کد تایید
