@@ -15,7 +15,7 @@ import {
 function CartItem({ cartItem }) {
   const { mutateAsync: addToCartAsync } = useAddToCart();
   const { mutateAsync: decFromCartAsync } = useDecrementFromCart();
-  
+
   const queryClient = useQueryClient();
 
   const addToCartHandler = async () => {
@@ -24,7 +24,7 @@ function CartItem({ cartItem }) {
       toast.success(message);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
     } catch (error) {
-      if (error?.response?.dara) {
+      if (error?.response?.data) {
         toast.error(
           error?.response?.data?.message
             ? error?.response?.data?.message
@@ -40,7 +40,7 @@ function CartItem({ cartItem }) {
       toast.success(message);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
     } catch (error) {
-      if (error?.response?.dara) {
+      if (error?.response?.data) {
         toast.error(
           error?.response?.data?.message
             ? error?.response?.data?.message
