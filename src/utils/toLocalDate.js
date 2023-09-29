@@ -6,5 +6,10 @@ export function toLocalDateString(date) {
     day: "numeric",
   };
 
-  return new Date(date).toLocalDateString("fa-IR", options);
+  return new Date(date).toLocaleDateString("fa-IR", options);
+}
+
+export function toLocalDateStringShort(date) {
+  // console.log(date);
+  return new Date(date).toLocaleDateString("fa-IR");
 }
