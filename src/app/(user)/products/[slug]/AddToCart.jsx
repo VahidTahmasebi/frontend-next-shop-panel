@@ -1,12 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { useGetUser } from "@/hooks/useAuth";
-
-import { addToCart } from "@/services/cartService";
+import { useAddToCart } from "@/hooks/useCart";
 
 import Loading from "@/common/Loading";
 
@@ -18,9 +17,7 @@ function AddToCart({ product }) {
   const { data } = useGetUser();
   const { user } = data || {};
 
-  const { isLoading, error, mutateAsync } = useMutation({
-    mutationFn: addToCart,
-  });
+  const { isLoading, mutateAsync } = useAddToCart();
 
   const addToCartHandler = async () => {
     if (!user) {
