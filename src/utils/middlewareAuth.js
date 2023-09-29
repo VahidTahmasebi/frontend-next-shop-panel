@@ -10,7 +10,7 @@ export default async function middlewareAuth(req) {
       method: "GET",
       credentials: "include",
       headers: {
-        Cookies: strCookie,
+        Cookie: strCookie,
       },
     }
   ).then((res) => res.json());
