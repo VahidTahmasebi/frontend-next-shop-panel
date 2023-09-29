@@ -1,3 +1,8 @@
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersianNumber";
+
 import { getOneProductBySlug, getProducts } from "@/services/productServices";
 
 import AddToCart from "./AddToCart";
@@ -17,16 +22,16 @@ async function page({ params }) {
       <p className="mb-6">
         قیمت محصول :{" "}
         <span className={`${product.discount ? "line-through" : "font-bold"}`}>
-          {product.price}
+          {toPersianNumbersWithComma(product.price)}
         </span>
       </p>
       {!!product.discount && (
         <div className="flex items-center gap-x-2 mb-6">
           <p className="text-xl font-bold">
-            قیمت با تخفیف : {product.offPrice}
+            قیمت با تخفیف : {toPersianNumbersWithComma(product.offPrice)}
           </p>
           <div className="py-0.5 px-2 rounded-xl text-sm text-white bg-rose-500">
-            {product.discount} %
+            {toPersianNumbers(product.discount)} %
           </div>
         </div>
       )}

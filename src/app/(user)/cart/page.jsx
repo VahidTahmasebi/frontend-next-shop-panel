@@ -6,6 +6,9 @@ import { useGetUser } from "@/hooks/useAuth";
 
 import Loading from "@/common/Loading";
 
+import CartItem from "./CartItem";
+import CartSummary from "./CartSummary";
+
 function Cart() {
   const { data, isLoading } = useGetUser();
   const { user, cart } = data || {};
@@ -33,11 +36,16 @@ function Cart() {
     );
 
   return (
-    <div>
-      {cart &&
-        cart.productDetail.map((item) => {
-          return <div key={item._id}>{item.title}</div>;
-        })}
+    <div className="grid grid-cols-4 gap-4">
+      <div className="col-span-3 space-y-5">
+        {cart &&
+          cart.productDetail.map((item) => {
+            return <CartItem cartItem={item} />;
+          })}
+      </div>
+      <div className="col-span-1">
+        <CartSummary payDetail={cart.payDetail} />
+      </div>
     </div>
   );
 }
