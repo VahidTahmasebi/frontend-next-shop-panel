@@ -16,7 +16,7 @@ function ProductsSort() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [sort, setSort] = useState("latest");
+  const [sort, setSort] = useState("");
 
   const createQueryString = useCallback(
     (name, value) => {
@@ -39,7 +39,7 @@ function ProductsSort() {
 
   return (
     <div>
-      <p className="mb-4 font-bold">مرتب سازی</p>
+      <p className="mt-7 mb-4 font-bold">مرتب سازی</p>
       {sortOptions.map((item) => {
         return (
           <RadioInput
