@@ -10,9 +10,9 @@ function ProductsFilter({ categories }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [selectedCategories, setSelectedCategories] = useState([
-    searchParams.get("category")?.split(",") || [],
-  ]);
+  const [selectedCategories, setSelectedCategories] = useState(
+    searchParams.get("category")?.split(",") || []
+  );
 
   const createQueryString = useCallback(
     (name, value) => {
@@ -50,7 +50,7 @@ function ProductsFilter({ categories }) {
               key={category._id}
               name="product-type"
               id={category._id}
-              label={category.label}
+              label={category.title}
               checked={selectedCategories.includes(category.englishTitle)}
               value={category.englishTitle}
               onChange={categoryHandler}
