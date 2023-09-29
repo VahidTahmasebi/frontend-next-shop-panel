@@ -29,7 +29,7 @@ function AddToCart({ product }) {
     try {
       const { message } = await mutateAsync(product._id);
       toast.success(message);
-      queryClient.invalidateQueries({ queryKey: ["grt-user"] });
+      queryClient.invalidateQueries({ queryKey: ["get-user"] });
     } catch (error) {
       toast.error(
         error?.response?.data?.message
@@ -42,7 +42,7 @@ function AddToCart({ product }) {
   const idInCart = (user, product) => {
     if (!user) false;
 
-    return user.cart?.products.some((p) => p.productId === product._id);
+    return user?.cart?.products.some((p) => p.productId === product._id);
   };
 
   return (
