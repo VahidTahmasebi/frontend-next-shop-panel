@@ -41,7 +41,7 @@ async function Products({ searchParams }) {
                     </span>
                   </div>
                   <Link
-                    href={`/product/${product.slug}`}
+                    href={`/products/${product.slug}`}
                     className="text-primary-900 font-bold">
                     مشاهده محصول
                   </Link>
