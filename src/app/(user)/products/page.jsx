@@ -7,6 +7,7 @@ import { getCategories } from "@/services/categoryServices";
 import { getProducts } from "@/services/productServices";
 
 import CategorySidebar from "./CategorySidebar";
+import AddToCart from "./[slug]/AddToCart";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +46,7 @@ async function Products({ searchParams }) {
                     className="text-primary-900 font-bold">
                     مشاهده محصول
                   </Link>
+                  <AddToCart product={product} />
                 </div>
               );
             })}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -38,9 +39,19 @@ function AddToCart({ product }) {
     }
   };
 
+  const idInCart = (user, product) => {
+    if (!user) false;
+
+    return user.cart?.products.some((p) => p.productId === product._id);
+  };
+
   return (
     <div>
-      {isLoading ? (
+      {idInCart(user, product) ? (
+        <Link href="/cart" className="font-bold text-primary-900">
+          ادامه سفارش
+        </Link>
+      ) : isLoading ? (
         <Loading />
       ) : (
         <button onClick={addToCartHandler} className="btn btn--primary">
