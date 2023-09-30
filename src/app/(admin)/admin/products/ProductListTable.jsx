@@ -3,6 +3,10 @@ import { HiCheckCircle } from "react-icons/hi";
 import Link from "next/link";
 
 import { productListTableHead } from "@/constants/tableHeads";
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersianNumber";
 
 function ProductListTable({ products }) {
   return (
@@ -28,10 +32,18 @@ function ProductListTable({ products }) {
                   {product.title}
                 </td>
                 <td className="table__td">{product.category.title}</td>
-                <td className="table__td">{product.price}</td>
-                <td className="table__td">{product.discount}</td>
-                <td className="table__td">{product.offPrice}</td>
-                <td className="table__td">{product.countInStock}</td>
+                <td className="table__td">
+                  {toPersianNumbersWithComma(product.price)}
+                </td>
+                <td className="table__td">
+                  {toPersianNumbers(product.discount)}
+                </td>
+                <td className="table__td">
+                  {toPersianNumbersWithComma(product.offPrice)}
+                </td>
+                <td className="table__td">
+                  {toPersianNumbersWithComma(product.countInStock)}
+                </td>
                 <td className="table__td  text-lg font-bold">
                   <Link href={`/admin/products/${product._id}`}>
                     مشاهده جزئیات
