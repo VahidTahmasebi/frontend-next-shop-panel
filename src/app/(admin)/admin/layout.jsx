@@ -4,7 +4,8 @@ import vazirFont from "@/constants/localFonts";
 import { Toaster } from "react-hot-toast";
 
 import Providers from "@/pages/Providers";
-import SideBar from "@/pages/(profile)/profile/SideBar";
+
+import AdminSideBar from "./AdminSideBar";
 
 export const metadata = {
   title: "Shop Panel",
