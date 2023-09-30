@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { getProducts } from "@/services/productServices";
+import { addProduct, getProducts } from "@/services/productServices";
 
 export const useGetProducts = () =>
   useQuery({
@@ -9,3 +9,7 @@ export const useGetProducts = () =>
     retry: false,
     refetchOnWindowFocus: true,
   });
+
+export const useAddProduct = () => {
+  return useMutation({ mutationFn: addProduct });
+};

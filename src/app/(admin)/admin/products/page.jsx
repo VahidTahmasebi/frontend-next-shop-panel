@@ -14,7 +14,7 @@ function page() {
 
   return (
     <div>
-      <h1 className="mb-5 text-lg font-bold">محصولات</h1>
+      <h1 className="mb-5 text-xl font-bold">محصولات</h1>
       <ProductListTable products={products} />
     </div>
   );
