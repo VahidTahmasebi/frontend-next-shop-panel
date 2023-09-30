@@ -19,12 +19,12 @@ export default function RootLayout({ children }) {
         className={`${vazirFont.variable} font-sans`}>
         <Providers>
           <Toaster />
-          <div className="h-screen grid grid-cols-4 bg-white">
+          <div className="h-screen grid grid-cols-5 bg-white">
             <div className="col-span-1 p-4 bg-gray-100 overflow-y-auto">
               <SideBar />
             </div>
+            <div className="col-span-4 p-4 overflow-y-auto">{children}</div>
           </div>
-          <div className="col-span-3 p-4 overflow-y-auto">{children}</div>
         </Providers>
       </body>
     </html>

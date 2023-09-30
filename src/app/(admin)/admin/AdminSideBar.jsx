@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { logout } from "@/services/authServices";
 
-function SideBar() {
+function AdminSideBar() {
   const logoutHandler = async () => {
     await logout();
     document.location.href = "/";
@@ -17,13 +17,22 @@ function SideBar() {
           <Link href="/">صفحه اصلی</Link>
         </li>
         <li>
-          <Link href="/profile">داشبورد</Link>
+          <Link href="/admin">داشبورد</Link>
         </li>
         <li>
-          <Link href="/profile/me">اطلاعات کاربری</Link>
+          <Link href="/admin/users">کاربران</Link>
         </li>
         <li>
-          <Link href="/profile/payments">سفارشات</Link>
+          <Link href="/admin/products">محصولات</Link>
+        </li>
+        <li>
+          <Link href="/admin/categories">دسته بندی</Link>
+        </li>
+        <li>
+          <Link href="/admin/payments">سفارشات</Link>
+        </li>
+        <li>
+          <Link href="/admin/coupons">کد تخفیف</Link>
         </li>
         <li>
           <button onClick={logoutHandler}>خروج از حساب کاربری</button>
@@ -33,4 +42,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default AdminSideBar;
