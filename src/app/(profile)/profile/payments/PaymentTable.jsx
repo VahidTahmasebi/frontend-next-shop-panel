@@ -1,6 +1,7 @@
 import { userPaymentTHead } from "@/constants/tableHeads";
 
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
+import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
 
 function PaymentTable({ payments }) {
   return (
@@ -22,7 +23,9 @@ function PaymentTable({ payments }) {
             return (
               <tr key={payment._id}>
                 <td className="table__td">{index}</td>
-                <td className="table__td">{payment.invoiceNumber}</td>
+                <td className="table__td whitespace-nowrap truncate">
+                  {payment.invoiceNumber}
+                </td>
                 <td className="table__td max-w-[280px] whitespace-nowrap truncate">
                   {payment.description}
                 </td>
@@ -32,26 +35,24 @@ function PaymentTable({ payments }) {
                       return (
                         <span
                           key={product._id}
-                          className="py-1 px-2 rounded-xl text-white bg-secondary-600 whitespace-nowrap">
+                          className="badge badge--secondary">
                           {product.title}
                         </span>
                       );
                     })}
                   </div>
                 </td>
-                <td className="table__td">{payment.amount}</td>
+                <td className="table__td text-lg font-bold">
+                  {toPersianNumbersWithComma(payment.amount)}
+                </td>
                 <td className="table__td">
                   {toLocalDateStringShort(payment.createdAt)}
                 </td>
                 <td className="table__td">
                   {payment.status === "COMPLETED" ? (
-                    <span className="py-0 px-2 rounded-xl text-white bg-green-500">
-                      موفق
-                    </span>
+                    <span className="badge badge--success">موفق</span>
                   ) : (
-                    <span className="py-0 px-2 rounded-xl text-white bg-rose-500">
-                      ناموفق
-                    </span>
+                    <span className="badge badge--error">ناموفق</span>
                   )}
                 </td>
               </tr>
