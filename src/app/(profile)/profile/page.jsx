@@ -12,9 +12,13 @@ function Profile() {
   if (isLoading) return <Loading />;
 
   return (
-    <div>
-      <h1>{user.name} خوش آمدی</h1>
-      <span>تاریخ پیوستن: {toLocalDateString(user.createdAt)}</span>
+    <div className="py-4">
+      <h1 className="mb-4 text-xl">{user.name} خوش آمدی</h1>
+      <h1 className="font-bold">
+        <span className="font-bold">
+          تاریخ پیوستن: {toLocalDateString(user.createdAt)}
+        </span>
+      </h1>
     </div>
   );
 }
