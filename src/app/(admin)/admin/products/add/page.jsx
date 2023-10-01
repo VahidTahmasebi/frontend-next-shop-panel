@@ -2,63 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { TagsInput } from "react-tag-input-component";
-import Select from "react-select";
 import toast from "react-hot-toast";
 
 import { useAddProduct } from "@/hooks/useProducts";
 import { useGetCategories } from "@/hooks/useCategories";
 
-import TextField from "@/common/TextField";
-import Loading from "@/common/Loading";
-
-const productsFormData = [
-  {
-    id: 1,
-    label: "عنوان",
-    name: "title",
-  },
-  {
-    id: 2,
-    label: "توضیحات",
-    name: "description",
-  },
-  {
-    id: 3,
-    label: "اسلاگ",
-    name: "slug",
-  },
-  {
-    id: 4,
-    label: "برند",
-    name: "brand",
-  },
-  {
-    id: 5,
-    label: "قیمت",
-    name: "price",
-  },
-  {
-    id: 6,
-    label: "تخفیف",
-    name: "discount",
-  },
-  {
-    id: 7,
-    label: "قیمت روی تخفیف",
-    name: "offPrice",
-  },
-  {
-    id: 8,
-    label: "موجودی",
-    name: "countInStock",
-  },
-  {
-    id: 9,
-    label: "لینک عکس محصول",
-    name: "imageLink",
-  },
-];
+import ProductForm from "@/components/ProductForm";
 
 function addProductPage() {
   const { isLoading, mutateAsync } = useAddProduct();
@@ -107,49 +56,18 @@ function addProductPage() {
   };
 
   return (
-    <div className="max-w-sm mb-10">
+    <div className="mb-10">
       <h1 className="mb-4 text-xl font-bold">اضافه کردن محصول</h1>
-      <form onSubmit={submitHandler} className="space-y-4">
-        {productsFormData.map((item) => {
-          return (
-            <TextField
-              key={item.id}
-              label={item.label}
-              name={item.name}
-              value={formData[item.name]}
-              onChange={changeHandler}
-            />
-          );
-        })}
-        <div>
-          <label htmlFor="tags" className="mb-2">
-            تگ محصولات
-          </label>
-          <TagsInput id="tags" name="tags" value={tags} onChange={setTags} />
-        </div>
-
-        <div>
-          <label htmlFor="category" className="mb-2">
-            دسته بندی
-          </label>
-          <Select
-            id="category"
-            options={categories}
-            onChange={setSelectedCategory}
-            getOptionLabel={(option) => option.title}
-            getOptionValue={(option) => option._id}
-          />
-        </div>
-        <div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <button type="submit" className="w-full btn btn--primary">
-              اضافه کردن محصول
-            </button>
-          )}
-        </div>
-      </form>
+      <ProductForm
+        productData={formData}
+        productDataOnChange={changeHandler}
+        tags={tags}
+        setTags={setTags}
+        categories={categories}
+        setSelectedCategory={setSelectedCategory}
+        submitHandler={submitHandler}
+        isLoading={isLoading}
+      />
     </div>
   );
 }
