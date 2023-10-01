@@ -1,4 +1,5 @@
-import { HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle, HiEye, HiTrash } from "react-icons/hi";
+import { RiEdit2Line } from "react-icons/ri";
 
 import Link from "next/link";
 
@@ -44,10 +45,18 @@ function ProductListTable({ products }) {
                 <td className="table__td">
                   {toPersianNumbersWithComma(product.countInStock)}
                 </td>
-                <td className="table__td  text-lg font-bold">
-                  <Link href={`/admin/products/${product._id}`}>
-                    مشاهده جزئیات
-                  </Link>
+                <td className="table__td text-lg font-bold">
+                  <div className="flex items-center gap-x-4">
+                    <Link href={`/admin/products/${product._id}`}>
+                      <HiEye className="w-6 h-6 text-primary-900" />
+                    </Link>
+                    <button>
+                      <HiTrash className="w-6 h-6 text-rose-600" />
+                    </button>
+                    <Link href={`/admin/products/edit/${product._id}`}>
+                      <RiEdit2Line className="w-6 h-6 text-secondary-600" />
+                    </Link>
+                  </div>
                 </td>
               </tr>
             );
