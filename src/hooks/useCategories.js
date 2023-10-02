@@ -4,6 +4,7 @@ import {
   addCategory,
   getCategories,
   getOneCategoryById,
+  removeCategory,
   updateCategory,
 } from "@/services/categoryServices";
 
@@ -21,6 +22,10 @@ export const useAddCategory = () => {
 
 export const useUpdateCategory = () => {
   return useMutation({ mutationFn: updateCategory });
+};
+
+export const useRemoveCategory = () => {
+  return useMutation({ mutationFn: removeCategory });
 };
 
 export const useGetCategoryById = (id) =>
