@@ -4,6 +4,7 @@ import {
   addProduct,
   getOneProductById,
   getProducts,
+  removeProduct,
   updateProduct,
 } from "@/services/productServices";
 
@@ -21,6 +22,10 @@ export const useAddProduct = () => {
 
 export const useUpdateProduct = () => {
   return useMutation({ mutationFn: updateProduct });
+};
+
+export const useRemoveProduct = () => {
+  return useMutation({ mutationFn: removeProduct });
 };
 
 export const useGetProductById = (id) =>

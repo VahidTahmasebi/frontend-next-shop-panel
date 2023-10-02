@@ -2,6 +2,10 @@ import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
+import { useRemoveProduct } from "@/hooks/useProducts";
 
 import { productListTableHead } from "@/constants/tableHeads";
 import {
@@ -10,6 +14,23 @@ import {
 } from "@/utils/toPersianNumber";
 
 function ProductListTable({ products }) {
+  const { mutateAsync } = useRemoveProduct();
+  const queryClient = useQueryClient();
+
+  const removeProductHandler = async (id) => {
+    try {
+      const { message } = await mutateAsync(id);
+      queryClient.invalidateQueries({ queryKey: ["get-products"] });
+      toast.success(message);
+    } catch (error) {
+      toast.error(
+        error?.response?.data?.message
+          ? error?.response?.data?.message
+          : "خطایی رخ داد"
+      );
+    }
+  };
+
   return (
     <div className="my-8 shadow-sm overflow-auto">
       <table className="w-full min-w-[800px] border-collapse text-sm table-auto">
@@ -50,7 +71,7 @@ function ProductListTable({ products }) {
                     <Link href={`/admin/products/${product._id}`}>
                       <HiEye className="w-6 h-6 text-primary-900" />
                     </Link>
-                    <button>
+                    <button onClick={() => removeProductHandler(product._id)}>
                       <HiTrash className="w-6 h-6 text-rose-600" />
                     </button>
                     <Link href={`/admin/products/edit/${product._id}`}>
