@@ -40,7 +40,7 @@ function UsersTable({ users }) {
                 </td>
                 <td className="table__td">
                   <div className="flex flex-col items-start gap-y-2">
-                    {user.products.map((product, index) => {
+                    {user.Products.map((product, index) => {
                       return (
                         <span key={index} className="badge badge--secondary">
                           {product.title}
