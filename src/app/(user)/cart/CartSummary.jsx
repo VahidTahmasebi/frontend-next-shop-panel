@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
 import Loading from "@/common/Loading";
 
-import { createPayment } from "@/services/paymentService";
+import { createPayment } from "@/services/paymentsService";
 
 function CartSummary({ payDetail }) {
   const { totalOffAmount, totalPrice, totalGrossPrice } = payDetail;
