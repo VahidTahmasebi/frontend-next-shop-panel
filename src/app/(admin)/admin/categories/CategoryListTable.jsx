@@ -3,19 +3,16 @@ import { RiEdit2Line } from "react-icons/ri";
 
 import Link from "next/link";
 
-import { productListTableHead } from "@/constants/tableHeads";
-import {
-  toPersianNumbers,
-  toPersianNumbersWithComma,
-} from "@/utils/toPersianNumber";
+import { categoryListTableHead } from "@/constants/tableHeads";
 
-function ProductListTable({ products }) {
+function CategoryListTable({ categories }) {
+  console.log(categories);
   return (
     <div className="my-8 shadow-sm overflow-auto">
       <table className="w-full min-w-[800px] border-collapse text-sm table-auto">
         <thead>
           <tr>
-            {productListTableHead.map((item) => {
+            {categoryListTableHead.map((item) => {
               return (
                 <th key={item.id} className="whitespace-nowrap table__th">
                   {item.label}
@@ -25,35 +22,29 @@ function ProductListTable({ products }) {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => {
+          {categories.map((category, index) => {
             return (
-              <tr key={product._id}>
+              <tr key={category._id}>
                 <td className="table__td">{index}</td>
                 <td className="table__td font-bold whitespace-nowrap">
-                  {product.title}
+                  {category.title}
                 </td>
-                <td className="table__td">{product.category.title}</td>
+                <td className="table__td">{category.description}</td>
+                <td className="table__td">{category.englishTitle}</td>
                 <td className="table__td">
-                  {toPersianNumbersWithComma(product.price)}
-                </td>
-                <td className="table__td">
-                  {toPersianNumbers(product.discount)}
-                </td>
-                <td className="table__td">
-                  {toPersianNumbersWithComma(product.offPrice)}
-                </td>
-                <td className="table__td">
-                  {toPersianNumbersWithComma(product.countInStock)}
+                  <span className="badge badge--secondary">
+                    {category.type}
+                  </span>
                 </td>
                 <td className="table__td text-lg font-bold">
                   <div className="flex items-center gap-x-4">
-                    <Link href={`/admin/products/${product._id}`}>
+                    <Link href={`/admin/categories/${category._id}`}>
                       <HiEye className="w-6 h-6 text-primary-900" />
                     </Link>
                     <button>
                       <HiTrash className="w-6 h-6 text-rose-600" />
                     </button>
-                    <Link href={`/admin/products/edit/${product._id}`}>
+                    <Link href={`/admin/categories/edit/${category._id}`}>
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
                   </div>
@@ -67,4 +58,4 @@ function ProductListTable({ products }) {
   );
 }
 
-export default ProductListTable;
+export default CategoryListTable;
