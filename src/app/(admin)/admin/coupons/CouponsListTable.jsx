@@ -47,7 +47,7 @@ function CouponsListTable({ coupons }) {
           {coupons.map((coupon, index) => {
             return (
               <tr key={coupon._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td">{index + 1}</td>
                 <td className="table__td font-bold whitespace-nowrap">
                   {coupon.code}
                 </td>

@@ -49,7 +49,7 @@ function ProductListTable({ products }) {
           {products.map((product, index) => {
             return (
               <tr key={product._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td">{index + 1}</td>
                 <td className="table__td font-bold whitespace-nowrap">
                   {product.title}
                 </td>

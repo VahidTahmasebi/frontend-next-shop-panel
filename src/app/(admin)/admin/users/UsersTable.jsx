@@ -25,7 +25,7 @@ function UsersTable({ users }) {
           {users.map((user, index) => {
             return (
               <tr key={user._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td">{index + 1}</td>
                 <td className="table__td whitespace-nowrap truncate">
                   {user.name}
                 </td>

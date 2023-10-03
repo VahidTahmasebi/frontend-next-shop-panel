@@ -45,7 +45,7 @@ function CategoryListTable({ categories }) {
           {categories.map((category, index) => {
             return (
               <tr key={category._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td">{index + 1}</td>
                 <td className="table__td font-bold whitespace-nowrap">
                   {category.title}
                 </td>

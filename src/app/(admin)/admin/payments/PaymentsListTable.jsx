@@ -26,7 +26,7 @@ function PaymentsListTable({ payments }) {
           {payments.map((payment, index) => {
             return (
               <tr key={payment._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td">{index + 1}</td>
                 <td className="table__td whitespace-nowrap truncate">
                   {payment.invoiceNumber}
                 </td>
