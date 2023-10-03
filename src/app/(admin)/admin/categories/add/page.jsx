@@ -4,13 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-import { useAddProduct } from "@/hooks/useProducts";
-import { useGetCategories } from "@/hooks/useCategories";
+import { useAddCategory, useGetCategories } from "@/hooks/useCategories";
 
-import ProductForm from "@/components/ProductForm";
+import CategoryForm from "@/components/CategoryForm";
 
-function addProductPage() {
-  const { isLoading, mutateAsync } = useAddProduct();
+function addCategoryPage() {
+  const { isLoading, mutateAsync } = useAddCategory();
 
   const { data } = useGetCategories();
   const { categories } = data || {};
@@ -19,32 +18,25 @@ function addProductPage() {
 
   const [formData, setFormData] = useState({
     title: "",
+    englishTitle: "",
     description: "",
-    slug: "",
-    brand: "",
-    price: "",
-    discount: "",
-    offPrice: "",
-    countInStock: "",
-    imageLink: "",
   });
 
-  const [tags, setTags] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedType, setSelectedType] = useState("");
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
     try {
       const { message } = await mutateAsync({
         ...formData,
-        tags,
-        category: selectedCategory._id,
+        type: selectedType.value,
       });
-      router.push("/admin/products");
+      router.push("/admin/categories");
       toast.success(message);
     } catch (error) {
       toast.error(
@@ -57,14 +49,11 @@ function addProductPage() {
 
   return (
     <div className="mb-10">
-      <h1 className="mb-4 text-xl font-bold">اضافه کردن محصول</h1>
-      <ProductForm
-        productData={formData}
-        productDataOnChange={changeHandler}
-        tags={tags}
-        setTags={setTags}
-        categories={categories}
-        setSelectedCategory={setSelectedCategory}
+      <h1 className="mb-4 text-xl font-bold">اضافه کردن دسته بندی</h1>
+      <CategoryForm
+        categoryData={formData}
+        categoryDataOnChange={changeHandler}
+        setSelectedType={setSelectedType}
         submitHandler={submitHandler}
         isLoading={isLoading}
       />
@@ -72,4 +61,4 @@ function addProductPage() {
   );
 }
 
-export default addProductPage;
+export default addCategoryPage;

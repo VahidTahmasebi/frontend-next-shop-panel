@@ -3,13 +3,13 @@ import vazirFont from "@/constants/localFonts";
 
 import { Toaster } from "react-hot-toast";
 
-import Providers from "../providers";
+import Providers from "../Providers";
 
 import Header from "../Header";
 
 export const metadata = {
   title: "Shop Panel",
-  description: "Next Shop Panel",
+  description: "Shop Panel",
 };
 
 export default function RootLayout({ children }) {

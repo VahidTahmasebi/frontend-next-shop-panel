@@ -1,26 +1,24 @@
-import { HiEye, HiTrash } from "react-icons/hi";
+import { HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { useRemoveProduct } from "@/hooks/useProducts";
+import { useRemoveCoupon } from "@/hooks/useCoupons";
 
-import { productListTableHead } from "@/constants/tableHeads";
-import {
-  toPersianNumbers,
-  toPersianNumbersWithComma,
-} from "@/utils/toPersianNumber";
+import { couponListTableHead } from "@/constants/tableHeads";
+import { toPersianNumbersWithComma } from "@/utils/toPersianNumber";
+import { toLocalDateStringShort } from "@/utils/toLocalDate";
 
-function ProductListTable({ products }) {
-  const { mutateAsync } = useRemoveProduct();
+function CouponsListTable({ coupons }) {
+  const { mutateAsync } = useRemoveCoupon();
   const queryClient = useQueryClient();
 
-  const removeProductHandler = async (id) => {
+  const removeCouponHandler = async (id) => {
     try {
       const { message } = await mutateAsync(id);
-      queryClient.invalidateQueries({ queryKey: ["get-products"] });
+      queryClient.invalidateQueries({ queryKey: ["get-coupons"] });
       toast.success(message);
     } catch (error) {
       toast.error(
@@ -36,7 +34,7 @@ function ProductListTable({ products }) {
       <table className="w-full min-w-[800px] border-collapse text-sm table-auto">
         <thead>
           <tr>
-            {productListTableHead.map((item) => {
+            {couponListTableHead.map((item) => {
               return (
                 <th key={item.id} className="whitespace-nowrap table__th">
                   {item.label}
@@ -46,35 +44,47 @@ function ProductListTable({ products }) {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => {
+          {coupons.map((coupon, index) => {
             return (
-              <tr key={product._id}>
+              <tr key={coupon._id}>
                 <td className="table__td">{index + 1}</td>
                 <td className="table__td font-bold whitespace-nowrap">
-                  {product.title}
-                </td>
-                <td className="table__td">{product.category.title}</td>
-                <td className="table__td">
-                  {toPersianNumbersWithComma(product.price)}
+                  {coupon.code}
                 </td>
                 <td className="table__td">
-                  {toPersianNumbers(product.discount)}
+                  <span className="badge badge--primary">{coupon.type}</span>
                 </td>
                 <td className="table__td">
-                  {toPersianNumbersWithComma(product.offPrice)}
+                  {toPersianNumbersWithComma(coupon.amount)}
                 </td>
                 <td className="table__td">
-                  {toPersianNumbersWithComma(product.countInStock)}
+                  <div className="flex flex-col items-start gap-y-2">
+                    {coupon.productIds.map((product) => {
+                      return (
+                        <span
+                          key={product._id}
+                          className="badge badge--secondary">
+                          {product.title}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </td>
+                <td className="table__td">
+                  {toPersianNumbersWithComma(coupon.usageCount)}
+                </td>
+                <td className="table__td">
+                  {toPersianNumbersWithComma(coupon.usageLimit)}
+                </td>
+                <td className="table__td">
+                  {toLocalDateStringShort(coupon.expireDate)}
                 </td>
                 <td className="table__td text-lg font-bold">
                   <div className="flex items-center gap-x-4">
-                    <Link href={`/admin/products/${product._id}`}>
-                      <HiEye className="w-6 h-6 text-primary-900" />
-                    </Link>
-                    <button onClick={() => removeProductHandler(product._id)}>
+                    <button onClick={() => removeCouponHandler(coupon._id)}>
                       <HiTrash className="w-6 h-6 text-rose-600" />
                     </button>
-                    <Link href={`/admin/products/edit/${product._id}`}>
+                    <Link href={`/admin/coupons/edit/${coupon._id}`}>
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
                   </div>
@@ -88,4 +98,4 @@ function ProductListTable({ products }) {
   );
 }
 
-export default ProductListTable;
+export default CouponsListTable;

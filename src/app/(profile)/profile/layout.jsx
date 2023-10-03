@@ -4,11 +4,12 @@ import vazirFont from "@/constants/localFonts";
 import { Toaster } from "react-hot-toast";
 
 import Providers from "@/pages/Providers";
+
 import SideBar from "./SideBar";
 
 export const metadata = {
-  title: "Shop Panel",
-  description: "Next Shop Panel",
+  title: "Profile Panel",
+  description: "Profile Panel",
 };
 
 export default function RootLayout({ children }) {

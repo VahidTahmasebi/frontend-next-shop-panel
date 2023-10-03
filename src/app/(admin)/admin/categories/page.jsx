@@ -4,15 +4,15 @@ import { HiPlusCircle } from "react-icons/hi";
 
 import Link from "next/link";
 
-import { useGetProducts } from "@/hooks/useProducts";
+import { useGetCategories } from "@/hooks/useCategories";
 
 import Loading from "@/common/Loading";
 
-import ProductListTable from "./ProductListTable";
+import CategoryListTable from "./CategoryListTable";
 
 function page() {
-  const { isLoading, data } = useGetProducts();
-  const { products } = data || {};
+  const { isLoading, data } = useGetCategories();
+  const { categories } = data || {};
 
   if (isLoading) return <Loading />;
 
@@ -21,12 +21,12 @@ function page() {
       <div className="flex justify-between items-center mb-5">
         <h1 className="mb-5 text-xl font-bold">محصولات</h1>
         <Link
-          href="/admin/products/add"
+          href="/admin/categories/add"
           className="flex items-center gap-x-2 font-bold text-primary-900">
-          <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن محصول</span>
+          <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن دسته بندی</span>
         </Link>
       </div>
-      <ProductListTable products={products} />
+      <CategoryListTable categories={categories} />
     </div>
   );
 }
