@@ -8,8 +8,8 @@ import Providers from "@/pages/Providers";
 import AdminSideBar from "./AdminSideBar";
 
 export const metadata = {
-  title: "Shop Panel",
-  description: "Next Shop Panel",
+  title: "Admin Panel",
+  description: "Admin Panel",
 };
 
 export default function RootLayout({ children }) {

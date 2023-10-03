@@ -9,7 +9,7 @@ import Header from "../Header";
 
 export const metadata = {
   title: "Shop Panel",
-  description: "Next Shop Panel",
+  description: "Shop Panel",
 };
 
 export default function RootLayout({ children }) {
