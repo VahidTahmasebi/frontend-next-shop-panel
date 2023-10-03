@@ -4,6 +4,7 @@ import vazirFont from "@/constants/localFonts";
 import { Toaster } from "react-hot-toast";
 
 import Providers from "@/pages/Providers";
+
 import SideBar from "./SideBar";
 
 export const metadata = {

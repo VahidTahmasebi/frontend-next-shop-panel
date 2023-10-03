@@ -3,7 +3,7 @@ import vazirFont from "@/constants/localFonts";
 
 import { Toaster } from "react-hot-toast";
 
-import Providers from "../providers";
+import Providers from "../Providers";
 
 import Header from "../Header";
 
